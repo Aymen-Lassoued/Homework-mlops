@@ -1,0 +1,19 @@
+schema: '2.0'
+stages:
+  train_model:
+    cmd: python src/train.py
+    deps:
+    - path: data/train/
+      hash: md5
+      md5: 83234c92aff446a5269423cbefa333d5.dir
+      size: 15391191
+      nfiles: 949
+    - path: src/train.py
+      hash: md5
+      md5: 1fd73c03badde1fa409cbce034207b11
+      size: 3903
+    outs:
+    - path: models/cnn_resnet18_freeze_backbone_False.pth
+      hash: md5
+      md5: 7150763667d8cc572ba99315cb33890e
+      size: 44792136
