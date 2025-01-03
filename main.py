@@ -43,7 +43,7 @@ def main(args):
         criterion = torch.nn.CrossEntropyLoss()
 
         # Define K-fold cross-validation with k=5
-        k_folds = 5
+        k_folds = 3
         kfold = KFold(n_splits=k_folds, shuffle=True)
 
         # K-fold Cross Validation model evaluation
@@ -88,7 +88,7 @@ def main(args):
     testset = Dataset(root_dir=args.data_path, transform=transform, mode=args.mode)
     test_loader = DataLoader(dataset=testset, batch_size=1, shuffle=False)
     # Load model checkpoint
-    model, _, _ = load_checkpoint(model, args.model_path)
+    model, _, _ = load_checkpoint(model, './models/cnn_resnet18_freeze_backbone_False.pth')
     test_classifier(model, test_loader, PLOTS_DIR, BACKBONE, FREEZE_BACKBONE, CLASS_NAMES, device)
 
 
@@ -98,7 +98,7 @@ if __name__ == "__main__":
                         help="Mode to run: 'train' or 'test'")
     parser.add_argument("--data_path", type=str, required=True,
                         help="Path to dataset")
-    parser.add_argument("--model_path", type=str, default="./models/",
+    parser.add_argument("--model_path", type=str, default="./models/cnn_resnet18_freeze_backbone_False.pth",
                         help="Directory to save or load the model")
 
     args = parser.parse_args()
